@@ -18,10 +18,11 @@ class Venta(Base):
     __tablename__ = 'ventas'
     id = Column(Integer, primary_key=True, autoincrement = True, nullable=False)
     fecha = Column(Date, nullable=False)
-    fecha = Column(Time, nullable=False)
+    hora = Column(Time, nullable=False)
     id_producto = Column(ForeignKey('productos.id'), nullable=False)
-    fecha = Column(Integer, nullable=False)
+    cantidad = Column(Integer, nullable=False)
     precio_total = Column(Float, nullable = False)
+
 
 # Crear las tablas en el archivo si no existen
 Base.metadata.create_all(engine)

@@ -41,7 +41,7 @@ def agregar_producto(datos_producto):  ####Me da error porque no sabe que es dat
 def eliminar_producto (id: int):
 
     producto = session.query(Producto).filter(Producto.id == id).first()
-    
+
     if producto is None:
      raise HTTPException(status_code=404, detail="Producto no encontrado")
     

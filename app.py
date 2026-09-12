@@ -33,3 +33,21 @@ def agregar_producto(datos_producto):  ####Me da error porque no sabe que es dat
         session.rollback()
         raise HTTPException(status_code=400, detail="Error al crear producto (datos inválidos)")
     return vars(producto_nuevo)
+
+
+
+# DELETE, para eliminar en este caso un producto
+@app.delete("/productos/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def eliminar_producto (id: int):
+
+    producto = session.query(Producto).filter(Producto.id == id).first()
+    
+    if producto is None:
+     raise HTTPException(status_code=404, detail="Producto no encontrado")
+    
+    try:
+        session.delete(producto)
+        session.commit()
+    except:
+        session.rollback()
+        raise HTTPException(status_code=400, detail="Error al eliminar el producto")
